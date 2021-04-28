@@ -1,6 +1,16 @@
 function KeytarMain(){
 	
-	var Notes[];
+	// Loaded Song 
+	var qNotes = [];
+	var wNotes = [];
+	var eNotes = [];
+	var rNotes = [];
+	var tNotes = [];
+	
+	// Game Parameters 
+	var points; 
+	var multiplier; 
+	var rockLevel; 
 }
 
 function Note(){
