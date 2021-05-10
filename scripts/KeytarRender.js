@@ -56,11 +56,36 @@ function drawImage() {
 				that.qNotes[x].y += 5;
 			}
 		}
+		if(that.tNotes.length > 0)
+		{
+			for(var x = 0; x < that.wNotes.length; x++){
+				that.ctx.drawImage(that.wNotes[x].img, 100, that.wNotes[x].y, 100, 50);
+				that.wNotes[x].y += 5;
+			}
+		}
+		if(that.eNotes.length > 0)
+		{
+			console.log(that.eNotes.length);
+			for(var x = 0; x < that.eNotes.length; x++){
+				that.ctx.drawImage(that.eNotes[x].img, 200, that.eNotes[x].y, 100, 50);
+				that.eNotes[x].y += 5;
+			}
+		}
+		if(that.rNotes.length > 0)
+		{
+			for(var x = 0; x < that.rNotes.length; x++){
+				that.ctx.drawImage(that.rNotes[x].img, 300, that.rNotes[x].y, 100, 50);
+				that.rNotes[x].y += 5;
+			}
+		}
+		if(that.qNotes.length > 0)
+		{
+			for(var x = 0; x < that.tNotes.length; x++){
+				that.ctx.drawImage(that.tNotes[x].img, 400, that.tNotes[x].y, 100, 50);
+				that.tNotes[x].y += 5;
+			}
+		}
 	
-	//if(that.qNotes[0] != undefined)	
-	//	that.ctx.drawImage(that.qNotes[0].img, 0, that.qNotes[0].y, 100, 50);
-	
-	//console.log(this);
 	window.requestAnimationFrame(drawImage);
 }
 
@@ -81,31 +106,31 @@ function readOutNotes() {
 		{
 			console.log("Q reader reading at time: " + kMain.qNotes[0] + " " + kR.currTime);
 			//console.log(kR.qNotes);
-			kR.qNotes.push(new GreenNote());
+			kR.qNotes.push(new Q_Note());
 			kMain.qNotes.shift();
 		}
 		if(kMain.wNotes.length > 0 && kMain.wNotes[0] <= kR.currTime - kR.readRange)
 		{
 			//console.log("W reader reading at time: " + kMain.wNotes[0]);
-			kR.wNotes.push(kMain.wNotes[0]);
+			kR.wNotes.push(new W_Note());
 			kMain.wNotes.shift();
 		}
 		if(kMain.eNotes.length > 0 && kMain.eNotes[0] <= kR.currTime - kR.readRange)
 		{
 			//console.log("E reader reading at time: " + kMain.eNotes[0]);
-			kR.eNotes.push(kMain.eNotes[0]);
+			kR.eNotes.push(new E_Note());
 			kMain.eNotes.shift();
 		}
 		if(kMain.rNotes.length > 0 && kMain.rNotes[0] <= kR.currTime - kR.readRange)
 		{
 			//console.log("R reader reading at time: " + kMain.rNotes[0]);
-			kR.rNotes.push(kMain.rNotes[0]);
+			kR.rNotes.push(new R_Note());
 			kMain.rNotes.shift();
 		}
 		if(kMain.tNotes.length > 0 && kMain.tNotes[0] <= kR.currTime - kR.readRange)
 		{
 			//console.log("T reader reading at time: " + kMain.tNotes[0]);
-			kR.tNotes.push(kMain.tNotes[0]);
+			kR.tNotes.push(new T_Note());
 			kMain.tNotes.shift();
 		}
 }

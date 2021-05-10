@@ -23,15 +23,47 @@ KeytarMain.prototype.loadSong = function(song){
 	this.tNotes = song[4];
 }
 
-function GreenNote(){
+function Q_Note(){
 	this.img = new Image();
 	this.x = 100;
 	this.y = 100;
 	
-	console.log(this.img);
-	
-	this.img.src = "images/doge.jpg";
+	this.img.src = "images/buttons/g_b.png";
 }
+
+function W_Note(){
+	this.img = new Image();
+	this.x = 100;
+	this.y = 100;
+	
+	this.img.src = "images/buttons/r_b.png";
+}
+
+function E_Note(){
+	this.img = new Image();
+	this.x = 100;
+	this.y = 100;
+	
+	this.img.src = "images/buttons/y_b.png";
+}
+
+function R_Note(){
+	this.img = new Image();
+	this.x = 100;
+	this.y = 100;
+	
+	this.img.src = "images/buttons/b_b.png";
+}
+
+function T_Note(){
+	this.img = new Image();
+	this.x = 100;
+	this.y = 100;
+	
+	this.img.src = "images/buttons/o_b.png";
+}
+
+
 
 function NoteReader(x,y){
 	this.x = x;
