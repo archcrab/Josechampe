@@ -8,7 +8,7 @@ function KeytarMain(){
 	this.tNotes = [];
 	
 	// Game Parameters 
-	this.points = 0; 
+	this.score = 0; 
 	this.multiplier = 1; 
 	this.rockLevel = 50; 
 	
@@ -26,7 +26,7 @@ KeytarMain.prototype.loadSong = function(song){
 function Q_Note(){
 	this.img = new Image();
 	this.x = 100;
-	this.y = 100;
+	this.y = 0;
 	
 	this.img.src = "images/buttons/g_b.png";
 }
@@ -34,7 +34,7 @@ function Q_Note(){
 function W_Note(){
 	this.img = new Image();
 	this.x = 100;
-	this.y = 100;
+	this.y = 0;
 	
 	this.img.src = "images/buttons/r_b.png";
 }
@@ -42,7 +42,7 @@ function W_Note(){
 function E_Note(){
 	this.img = new Image();
 	this.x = 100;
-	this.y = 100;
+	this.y = 0;
 	
 	this.img.src = "images/buttons/y_b.png";
 }
@@ -50,7 +50,7 @@ function E_Note(){
 function R_Note(){
 	this.img = new Image();
 	this.x = 100;
-	this.y = 100;
+	this.y = 0;
 	
 	this.img.src = "images/buttons/b_b.png";
 }
@@ -58,65 +58,90 @@ function R_Note(){
 function T_Note(){
 	this.img = new Image();
 	this.x = 100;
-	this.y = 100;
+	this.y = 0;
 	
 	this.img.src = "images/buttons/o_b.png";
 }
 
 
 
-function NoteReader(x,y){
-	this.x = x;
-	this.y = y;
+function NoteReader(){
+	this.x = 0;
+	this.y = 500;
 	this.img;
+	
+	this.range = 50;
 }
 
 NoteReader.prototype.checkHit = function(y) {
 	//return y < this.y + 50 && y > this.y - 50;
 	
-	if(kMain.keys.includes(81) && kR.qNotes[0].y < this.y + 50 && kR.qNotes[0].y > this.y - 50 ){
-		kMain.score += 50 * multiplier;
-		kMain.rockLevel += 1;
-		kR.qNotes.shift();
-	}
-	else{
-		kMain.rockLevel -= 2;
+	//console.log(kR.qNotes.length);
+	
+	if(kR.qNotes.length > 0 && kMain.keys.includes(81)){
+		if(kR.qNotes[0].y < this.y + this.range && kR.qNotes[0].y > this.y - this.range ){
+			kMain.score += 50;
+			kMain.rockLevel += 1;
+			kR.qNotes.shift();
+			
+			console.log(50);
+		}
+		else{
+			kMain.rockLevel -= 1;
+			//console.log("Miss");
+		}
 	}
 	
-	if(kMain.keys.includes(87) && kR.wNotes[0].y < this.y + 50 && kR.wNotes[0].y > this.y - 50 ){
-		kMain.score += 50 * multiplier;
-		kMain.rockLevel += 1;
-		kR.wNotes.shift();
-	}
-	else{
-		kMain.rockLevel -= 2;
-	}
-	
-	if(kMain.keys.includes(69) && kR.eNotes[0].y < this.y + 50 && kR.eNotes[0].y > this.y - 50 ){
-		kMain.score += 50 * multiplier;
-		kMain.rockLevel += 1;
-		kR.eNotes.shift();
-	}
-	else{
-		kMain.rockLevel -= 2;
+	if(kR.wNotes.length > 0 && kMain.keys.includes(87)){
+		if(kR.wNotes[0].y < this.y + this.range && kR.wNotes[0].y > this.y - this.range ){
+			kMain.score += 50;
+			kMain.rockLevel += 1;
+			kR.wNotes.shift();
+			//console.log("Score")
+		}
+		else{
+			kMain.rockLevel -= 1;
+			//console.log("Miss");
+		}
 	}
 	
-	if(kMain.keys.includes(82) && kR.rNotes[0].y < this.y + 50 && kR.rNotes[0].y > this.y - 50 ){
-		kMain.score += 50 * multiplier;
-		kMain.rockLevel += 1;
-		kR.rNotes.shift();
+	if(kR.eNotes.length > 0 && kMain.keys.includes(69)){
+		if(kR.eNotes[0].y < this.y + this.range && kR.eNotes[0].y > this.y - this.range ){
+			kMain.score += 50;
+			kMain.rockLevel += 1;
+			kR.eNotes.shift();
+			//console.log("Score")
+		}
+		else{
+			kMain.rockLevel -= 1;
+			//console.log("Miss");
+		}
 	}
-	else{
-		kMain.rockLevel -= 2;
+		
+	if(kR.rNotes.length > 0 && kMain.keys.includes(82)){
+		if(kR.rNotes[0].y < this.y + this.range && kR.rNotes[0].y > this.y - this.range ){
+			kMain.score += 50;
+			kMain.rockLevel += 1;
+			kR.rNotes.shift();
+			//console.log("Score")
+		}
+		else{
+			kMain.rockLevel -= 1;
+			//console.log("Miss");
+		}
 	}
 	
-	if(kMain.keys.includes(84) && kR.tNotes[0].y < this.y + 50 && kR.tNotes[0].y > this.y - 50 ){
-		kMain.score += 50 * multiplier;
-		kMain.rockLevel += 1;
-		kR.tNotes.shift();
-	}
-	else{
-		kMain.rockLevel -= 2;
+	if(kR.tNotes.length > 0 && kMain.keys.includes(84) ){
+		if(kR.tNotes[0].y < this.y + this.range && kR.tNotes[0].y > this.y - this.range){
+			kMain.score += 50;
+			kMain.rockLevel += 1;
+			kR.tNotes.shift();
+			//console.log("Score")
+		}
+		else{
+			kMain.rockLevel -= 1;
+			//console.log("Miss");
+		}
 	}
 }
 
@@ -131,12 +156,13 @@ NoteReader.prototype.checkHit = function(y) {
 document.onkeydown = function (e) {
 	//e = e || event; // to deal with IE
     //map[e.keyCode] = e.type == 'keydown';
+	
 	if(!kMain.keys.includes(e.keyCode)){
 		kMain.keys.push(e.keyCode);
-		//console.log(kMain.keys);
 		
-		if(e.keyCode == 32){
+		if(e.keyCode == 13){
 			nReader.checkHit();
+			//console.log("Check Hit for: " + kMain.keys);
 		}
 	}
 	
