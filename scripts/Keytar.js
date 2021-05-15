@@ -23,6 +23,17 @@ KeytarMain.prototype.loadSong = function(song){
 	this.tNotes = song[4];
 }
 
+KeytarMain.prototype.addRockLvl = function(){
+	if(this.rockLevel < 100)
+		this.rockLevel++;
+
+}
+
+KeytarMain.prototype.subRockLvl = function(){
+	if(this.rockLevel >= 0)
+		this.rockLevel--;
+}
+
 function Q_Note(){
 	this.img = new Image();
 	this.x = 100;
@@ -63,7 +74,13 @@ function T_Note(){
 	this.img.src = "images/buttons/o_b.png";
 }
 
-
+function fretBoard(){
+	this.img = new Image();
+	this.x = 100;
+	this.y = -400;
+	
+	this.img.src = "images/Guitar_neck.png";
+}
 
 function NoteReader(){
 	this.x = 0;
@@ -81,13 +98,13 @@ NoteReader.prototype.checkHit = function(y) {
 	if(kR.qNotes.length > 0 && kMain.keys.includes(81)){
 		if(kR.qNotes[0].y < this.y + this.range && kR.qNotes[0].y > this.y - this.range ){
 			kMain.score += 50;
-			kMain.rockLevel += 1;
+			kMain.addRockLvl();
 			kR.qNotes.shift();
 			
-			console.log(50);
+			//console.log(50);
 		}
 		else{
-			kMain.rockLevel -= 1;
+			kMain.subRockLvl();
 			//console.log("Miss");
 		}
 	}
@@ -95,12 +112,12 @@ NoteReader.prototype.checkHit = function(y) {
 	if(kR.wNotes.length > 0 && kMain.keys.includes(87)){
 		if(kR.wNotes[0].y < this.y + this.range && kR.wNotes[0].y > this.y - this.range ){
 			kMain.score += 50;
-			kMain.rockLevel += 1;
+			kMain.addRockLvl();
 			kR.wNotes.shift();
 			//console.log("Score")
 		}
 		else{
-			kMain.rockLevel -= 1;
+			kMain.subRockLvl();
 			//console.log("Miss");
 		}
 	}
@@ -108,12 +125,12 @@ NoteReader.prototype.checkHit = function(y) {
 	if(kR.eNotes.length > 0 && kMain.keys.includes(69)){
 		if(kR.eNotes[0].y < this.y + this.range && kR.eNotes[0].y > this.y - this.range ){
 			kMain.score += 50;
-			kMain.rockLevel += 1;
+			kMain.addRockLvl();
 			kR.eNotes.shift();
 			//console.log("Score")
 		}
 		else{
-			kMain.rockLevel -= 1;
+			kMain.subRockLvl();
 			//console.log("Miss");
 		}
 	}
@@ -121,12 +138,12 @@ NoteReader.prototype.checkHit = function(y) {
 	if(kR.rNotes.length > 0 && kMain.keys.includes(82)){
 		if(kR.rNotes[0].y < this.y + this.range && kR.rNotes[0].y > this.y - this.range ){
 			kMain.score += 50;
-			kMain.rockLevel += 1;
+			kMain.addRockLvl();
 			kR.rNotes.shift();
 			//console.log("Score")
 		}
 		else{
-			kMain.rockLevel -= 1;
+			kMain.subRockLvl();
 			//console.log("Miss");
 		}
 	}
@@ -134,12 +151,12 @@ NoteReader.prototype.checkHit = function(y) {
 	if(kR.tNotes.length > 0 && kMain.keys.includes(84) ){
 		if(kR.tNotes[0].y < this.y + this.range && kR.tNotes[0].y > this.y - this.range){
 			kMain.score += 50;
-			kMain.rockLevel += 1;
+			kMain.addRockLvl();
 			kR.tNotes.shift();
 			//console.log("Score")
 		}
 		else{
-			kMain.rockLevel -= 1;
+			kMain.subRockLvl();
 			//console.log("Miss");
 		}
 	}

@@ -18,13 +18,13 @@ function KeytarRender() {
   this.rNotes = [];
   this.tNotes = [];
   
+  this.fBoard = new fretBoard();
+  
   this.audio = document.getElementById("myAudio");;
   this.audio.play();
   
   //Initialization
   setInterval(setCurrTime, 5);
-  //var test = setTimeout(this.setupGame, 10000);   
-  //var myInterval = setInterval(setCurrime, 5);
   this.setupGame();
 }
 
@@ -39,23 +39,20 @@ KeytarRender.prototype.clearCanvas = function() {
 };
 
 KeytarRender.prototype.drawBounds = function() {
-	/*this.ctx.moveTo(0, 0);
-    this.ctx.lineTo(900,0);
-    this.ctx.lineTo(900, 600);
-	this.ctx.lineTo(0, 600 );
-	this.ctx.lineTo(0, 0);
-	*/
+	
 	//Reader
+	this.ctx.lineWidth = 10;
+	this.ctx.strokeStyle="#33CC33";
 	this.ctx.moveTo(0,475);
-	this.ctx.lineTo(600,475);
+	this.ctx.lineTo(500,475);
 	this.ctx.moveTo(0,525);
-	this.ctx.lineTo(600,525);
+	this.ctx.lineTo(500,525);
 	
 	//
 	this.ctx.font = "30px Arial"; 
-	this.ctx.fillText(kMain.score,650,300);
+	this.ctx.fillText(kMain.score,650,200);
 	
-	this.ctx.fillText(kMain.rockLevel,650,200);
+	this.ctx.fillText(kMain.rockLevel,650,340);
 	
 	this.ctx.stroke();
 };
@@ -66,8 +63,12 @@ function drawImage() {
 	var that = kR;	
 	
 	that.clearCanvas();
-	kR.drawBounds();
+	that.ctx.drawImage(that.fBoard.img, 0, that.fBoard.y, 500, 2000);
+	that.fBoard.y += 5;
+	if(that.fBoard.y > -130)
+		that.fBoard.y = -400;
 	
+	kR.drawBounds();
 		
 		if(that.qNotes.length > 0)
 		{
